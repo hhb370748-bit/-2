@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Custom scrollbar for tech aesthetic */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* ========================================================= */
+/* CRITICAL PRINT STYLES FOR CRISP INVOICE & RECEIPT PRINT   */
+/* ========================================================= */
+@media print {
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide entire page UI (headers, navbars, background wrappers) */
+  header,
+  nav,
+  main,
+  footer,
+  aside,
+  .print\:hidden,
+  button {
+    display: none !important;
+  }
+
+  /* Make modal container fill page cleanly without dark backdrop */
+  .fixed.inset-0 {
+    position: static !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+  }
+
+  #printable-invoice-container {
+    display: block !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    overflow: visible !important;
+  }
+
+  #printable-invoice {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 12mm 15mm !important;
+    border: none !important;
+    box-shadow: none !important;
+    page-break-after: avoid;
+  }
+
+  #printable-thermal {
+    display: block !important;
+    width: 78mm !important;
+    max-width: 78mm !important;
+    margin: 0 auto !important;
+    padding: 2mm 3mm !important;
+    border: none !important;
+    box-shadow: none !important;
+    page-break-after: avoid;
+  }
+
+  @page {
+    size: auto;
+    margin: 4mm;
+  }
+}
+
